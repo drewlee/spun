@@ -1,0 +1,8 @@
+----------
+BACKGROUND
+----------
+
+Spun is a jQuery plugin that polyfills the HTML 5 input type="number" element.
+
+You can also use it to replace this element across all browsers for more customizable
+and cross platform CSS styling.
