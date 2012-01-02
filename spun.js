@@ -38,8 +38,6 @@ Spun.prototype = {
 			'<div class="jq-spun-btns">' +
 				'<div class="jq-spun-btn-inc-wrap"><button class="jq-spun-btn-inc">'+sts.incBtnText+'</button></div>' +
 				'<div class="jq-spun-btn-dec-wrap"><button class="jq-spun-btn-dec">'+sts.decBtnText+'</button></div>' +
-				//'<a href="javascript:;" mouseover="function(){return false;}" class="jq-spun-btn-inc">' + sts.incBtnText + '</a>' +
-				//'<a href="javascript:;" mouseover="function(){return false;}" class="jq-spun-btn-dec">' + sts.decBtnText + '</a>' +
 			'</div>'
 		)
 		.find('div.jq-spun-input').append($input);
