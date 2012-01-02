@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Spun jQuery Plugin - Polyfill Test</title>
+
+<link rel="stylesheet" href="../spun.css" />
+
+<script src="../jquery-1.7.1.min.js"></script>
+<script src="../spun.js"></script>
+
+</head>
+<body>
+<p>Inputs should all be replaced if the browser does not support input type="number".</p>
+<p id="is_supported">Input type="number" supported: <span style="color:red;"></span></p>
+
+<input id="spun_01" type="number" value="0" min="0" max="10" step="5" />
+<input id="spun_02" type="number" value="0" min="0" max="20" step="2" />
+<input id="spun_03" type="number" value="0" />
+
+
+<script>
+$(function(){	
+	$('#is_supported').find('span').html($.spun('supported') ? 'yes' : 'no');
+	
+	$.spun();
+});
+</script>
+</body>
+</html>

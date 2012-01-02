@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+body{font:100% Arial, sans-serif;}
+
+/* base styles */
+.jq-spun-wrap{overflow:hidden; height:1%; /*IE 6 fix*/}
+.jq-spun-input{float:left;}
+.jq-spun-input input{display:block; float:left;}
+.jq-spun-btns{float:left;}
+.jq-spun-btn-inc,
+.jq-spun-btn-dec{display:block; overflow:hidden; margin:0; padding:0; outline:none;}
+
+/* theme styles */
+.jq-spun-wrap{margin-top:20px;}
+.jq-spun-input input{padding:2px 3px; margin:0; width:150px; height:17px; border:1px solid #000; font:12px/16px Arial, sans-serif;}
+.jq-spun-btns{border:1px solid #000; border-left:none;}
+.jq-spun-btn-inc-wrap,
+.jq-spun-btn-dec-wrap{}
+.jq-spun-btn-inc-wrap{border-bottom:1px solid #000;}
+.jq-spun-btn-inc,
+.jq-spun-btn-dec{height:10px; width:20px; border:none; background-color:#ccc; font:12px/10px Arial, sans-serif;}

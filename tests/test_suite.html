@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Spun jQuery Plugin - Test Mocks</title>
+
+<link rel="stylesheet" href="../spun.css" />
+<style>
+.group{margin:10px 0; padding:10px; background-color:#eee;}
+.test-wrap input,
+#test_id_1_jqspun input{border-color:green; border-width:2px 1px 2px 2px;}
+.test-wrap .jq-spun-btns,
+#test_id_1_jqspun .jq-spun-btns{border-color:green; border-width:2px;}
+
+.jq-spun-disabled input,
+.jq-spun-disabled .jq-spun-btns,
+.jq-spun-disabled .jq-spun-btn-inc-wrap{border-color:#999;}
+.jq-spun-disabled .jq-spun-btn-inc,
+.jq-spun-disabled .jq-spun-btn-dec{color:#999;}
+</style>
+
+<script src="../jquery-1.7.1.min.js"></script>
+<script src="../spun.js"></script>
+
+</head>
+<body>
+<p id="is_supported">Input type="number" supported: <span style="color:red;"></span></p>
+	
+<div class="group">
+	<p>Polyfill mode (not specified): the following inputs should only be replaced if the browser doesn't support input type="number".</p>
+	
+	<input class="group1" type="number" value="0" min="0" max="10" step="5" />
+	<input class="group1" type="number" value="0" min="0" max="20" step="2" />
+	<input class="group1" type="number" value="0" />
+</div>
+
+<div class="group">
+	<p>Polyfill mode (not specified in options): the following inputs should only be replaced if the browser doesn't support input type="number".</p>
+	
+	<input class="group2" type="number" value="0" min="0" max="10" step="5" />
+	<input class="group2" type="number" value="0" min="0" max="20" step="2" />
+	<input class="group2" type="number" value="0" />
+</div>
+
+<div class="group">
+	<p>Polyfill mode (specified): the following inputs should only be replaced if the browser doesn't support input type="number".</p>
+	
+	<input class="group3" type="number" value="0" min="0" max="10" step="5" />
+	<input class="group3" type="number" value="0" min="0" max="20" step="2" />
+	<input class="group3" type="number" value="0" />
+</div>
+
+<div class="group">
+	<p>Replace mode: the following inputs should always be replaced.</p>
+	<p>The wrapper should have a class of <b>test-wrap</b></p>
+	
+	<input class="group4" type="number" value="0" min="0" max="10" step="5" />
+	<input class="group4" type="number" value="0" min="0" max="20" step="2" />
+	<input class="group4" type="number" value="0" />
+</div>
+
+<div class="group">
+	<p>The following element should have a wrapper with id of <b>test_id_1_jqspun</b></p>
+	
+	<input id="test_id_1" type="number" value="0" min="0" max="10" step="5" />
+	<div style="clear:both;"></div>
+</div>
+
+<div class="group">
+	<p>The following input has a min value of -100, max value of 100, and step of 5.</p>
+	
+	<input id="test_id_2" type="number" value="0" min="-100" max="100" step="5" />
+</div>
+
+<div class="group">
+	<p>The following element should be able to deal with NaN entries.</p>
+	
+	<input id="test_id_3" type="number" value="0" />
+</div>
+
+<div class="group">
+	<p>The following element should be able to handle floating point numbers.</p>
+	
+	<input id="test_id_4" type="number" value="0" />
+</div>
+
+<div class="group">
+	<p>The following input should be disabled.</p>
+	
+	<input id="test_id_5" type="number" value="0" min="-100" max="100" step="5" disabled="disabled" />
+	
+	<input id="enable_disable" type="button" value="toggle" />
+</div>
+
+<script>
+$(function(){	
+	$('#is_supported').find('span').html($.spun('supported') ? 'yes' : 'no');
+	
+	$('input.group1').spun();
+	$('input.group2').spun({customClass: 'test-wrap'});
+	$('input.group3').spun({method: 'polyfill'});
+	$('input.group4').spun({method: 'replace', customClass: 'test-wrap'});
+	$('#test_id_1, #test_id_2').spun({method: 'replace'});
+	
+	$('#test_id_3')
+		.spun({method: 'replace'})
+		.focus(function(){
+			var $this = $(this);
+			
+			setTimeout(function(){
+				$this.val('sfljdlfjsldfkj');
+			}, 200);
+		});
+		
+	$('#test_id_4')
+		.spun({method: 'replace'})
+		.focus(function(){
+			var $this = $(this);
+			
+			setTimeout(function(){
+				$this.val('4983.98394');
+			}, 200);
+		});
+		
+	var $test_id_5 = $('#test_id_5').spun({method: 'replace'});
+	
+	var model = {
+		label: ['disable', 'enable'],
+		state: 0
+	};
+	
+	$('#enable_disable').click(function(){
+		model.state = model.state ? 0 : 1;
+		$test_id_5.spun(model.label[model.state]);
+	});
+});
+</script>
+</body>
+</html>
